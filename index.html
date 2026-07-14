@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; background:#F7F5F0; font-family:'Inter',sans-serif; color:#0F2747; }
+  html { scroll-behavior:smooth; }
+  a { color:#6B1022; text-decoration:none; }
+  a:hover { color:#C6A15B; }
+  img { max-width:100%; }
+  input, select, textarea, button { max-width:100%; }
+  @media (max-width: 920px) {
+    h1 { font-size:44px !important; }
+    h2 { font-size:32px !important; }
+    blockquote { font-size:26px !important; }
+    header > div { height:auto !important; flex-wrap:wrap; row-gap:10px; padding:12px 20px !important; }
+    header nav { flex-wrap:wrap; gap:14px !important; row-gap:10px; }
+    section > div, footer > div { padding-left:20px !important; padding-right:20px !important; }
+    div[style*="grid-template-columns"] { display:flex !important; flex-direction:column !important; }
+    section > div[style*="display:grid"] { display:flex !important; flex-direction:column !important; }
+  }
+  @media (max-width: 600px) {
+    h1 { font-size:36px !important; }
+    h2 { font-size:28px !important; }
+    blockquote { font-size:22px !important; }
+  }
+</style>
+</helmet>
+
+<!-- ============ NAV ============ -->
+<header data-screen-label="Navigation" style="position:sticky; top:0; z-index:50; background:rgba(15,39,71,0.97); backdrop-filter:blur(8px); border-bottom:1px solid rgba(198,161,91,0.35);">
+  <div style="max-width:1180px; margin:0 auto; padding:0 32px; height:72px; display:flex; align-items:center; justify-content:space-between;">
+    <a href="#top" style="display:flex; align-items:center; gap:14px; color:#F7F5F0;">
+      <span style="display:inline-flex; align-items:flex-start; font-family:'Cormorant Garamond',serif; line-height:1;">
+        <span style="font-size:30px; font-weight:500; color:#F7F5F0;">C</span>
+        <span style="font-size:30px; font-weight:500; color:#C6A15B; margin:3px -3px 0;">J</span>
+        <span style="font-size:30px; font-weight:500; color:#F7F5F0;">C</span>
+      </span>
+      <span style="display:flex; flex-direction:column;">
+        <span style="font-family:'Cormorant Garamond',serif; font-size:19px; letter-spacing:0.1em; font-weight:600;">CORY J. <span style="color:#C6A15B;">CHAVIS</span></span>
+        <span style="font-size:8.5px; letter-spacing:0.34em; color:#7D8794;">THE WINOLOGIST&trade;</span>
+      </span>
+    </a>
+    <nav style="display:flex; align-items:center; gap:32px;">
+      <sc-for list="{{ navLinks }}" as="n" hint-placeholder-count="4">
+        <a href="{{ n.href }}" style="font-size:12px; letter-spacing:0.22em; color:#F7F5F0; font-weight:500;" style-hover="color:#C6A15B;">{{ n.label }}</a>
+      </sc-for>
+      <a href="#book" style="background:#C6A15B; color:#0F2747; font-size:12px; letter-spacing:0.18em; font-weight:600; padding:12px 22px;" style-hover="background:#D8B878; color:#0F2747;">GET THE BOOK</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<sc-if value="{{ heroIsNavy }}" hint-placeholder-val="{{ true }}">
+<section id="top" data-screen-label="Hero" style="background:#0F2747; color:#F7F5F0; background-image:radial-gradient(circle at 50% 50%, rgba(198,161,91,0.12) 1px, transparent 1.5px); background-size:26px 26px;">
+  <div style="max-width:1180px; margin:0 auto; padding:64px 32px 0; display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:end;">
+    <div style="padding-bottom:56px;">
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:22px;">
+        <span style="width:44px; height:1px; background:#C6A15B;"></span>
+        <span style="font-size:12px; letter-spacing:0.4em; color:#C6A15B; font-weight:600;">BISHOP &middot; AUTHOR &middot; SPEAKER &middot; COACH</span>
+      </div>
+      <h1 style="font-family:'Cormorant Garamond',serif; font-size:68px; font-weight:600; line-height:1.08; margin:0 0 24px;">Helping Couples <span style="color:#C6A15B;">Win</span> Before Marriage.&trade;</h1>
+      <p style="font-size:17px; line-height:1.75; color:rgba(247,245,240,0.85); margin:0 0 36px; max-width:520px;">Most people prepare for a wedding. Very few prepare for a marriage. Cory J. Chavis — The Winologist&trade; — helps couples build relationships that last.</p>
+      <div style="display:flex; gap:16px; align-items:center;">
+        <a href="https://www.amazon.com/dp/B0H2V19FH2" target="_blank" style="background:#C6A15B; color:#0F2747; font-size:13px; letter-spacing:0.16em; font-weight:600; padding:17px 32px;" style-hover="background:#D8B878; color:#0F2747;">ORDER THE BOOK</a>
+        <a href="#booking" style="border:1px solid rgba(247,245,240,0.5); color:#F7F5F0; font-size:13px; letter-spacing:0.16em; font-weight:500; padding:16px 32px;" style-hover="border-color:#C6A15B; color:#C6A15B;">BOOK CORY TO SPEAK</a>
+      </div>
+    </div>
+    <div style="display:flex; justify-content:center;">
+      <img src="assets/hero-image.png" alt="Cory J. Chavis" style="width:100%; max-width:400px; display:block; object-fit:cover; aspect-ratio:4/5; object-position:top;">
+    </div>
+  </div>
+</section>
+</sc-if>
+<sc-if value="{{ heroIsEditorial }}" hint-placeholder-val="{{ false }}">
+<section id="top" data-screen-label="Hero" style="background:#F7F5F0; color:#0F2747; border-bottom:1px solid #E2DDD2;">
+  <div style="max-width:1180px; margin:0 auto; padding:64px 32px; display:grid; grid-template-columns:0.9fr 1.1fr; gap:64px; align-items:center;">
+    <div style="position:relative;">
+      <div style="position:absolute; top:-18px; left:-18px; right:38px; bottom:38px; border:1px solid #C6A15B;"></div>
+      <img src="assets/hero-image.png" alt="Cory J. Chavis" style="width:100%; display:block; object-fit:cover; aspect-ratio:4/5; object-position:top; position:relative;">
+    </div>
+    <div>
+      <div style="display:flex; align-items:center; gap:14px; margin-bottom:22px;">
+        <span style="width:44px; height:1px; background:#C6A15B;"></span>
+        <span style="font-size:12px; letter-spacing:0.4em; color:#6B1022; font-weight:600;">BISHOP &middot; AUTHOR &middot; SPEAKER &middot; COACH</span>
+      </div>
+      <h1 style="font-family:'Cormorant Garamond',serif; font-size:64px; font-weight:600; line-height:1.08; margin:0 0 24px; color:#0F2747;">Helping Couples <span style="color:#C6A15B;">Win</span> Before Marriage.&trade;</h1>
+      <p style="font-size:17px; line-height:1.75; color:#33425A; margin:0 0 36px; max-width:520px;">Most people prepare for a wedding. Very few prepare for a marriage. Cory J. Chavis — The Winologist&trade; — helps couples build relationships that last.</p>
+      <div style="display:flex; gap:16px; align-items:center;">
+        <a href="https://www.amazon.com/dp/B0H2V19FH2" target="_blank" style="background:#0F2747; color:#F7F5F0; font-size:13px; letter-spacing:0.16em; font-weight:600; padding:17px 32px;" style-hover="background:#1B3A63; color:#F7F5F0;">ORDER THE BOOK</a>
+        <a href="#booking" style="border:1px solid #0F2747; color:#0F2747; font-size:13px; letter-spacing:0.16em; font-weight:500; padding:16px 32px;" style-hover="border-color:#C6A15B; color:#6B1022;">BOOK CORY TO SPEAK</a>
+      </div>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<!-- ============ BOOK ============ -->
+<section id="book" data-screen-label="Book" style="background:#F7F5F0;">
+  <div style="max-width:1180px; margin:0 auto; padding:72px 32px; display:grid; grid-template-columns:0.8fr 1.2fr; gap:56px; align-items:center;">
+    <div style="display:flex; justify-content:center; perspective:1000px;">
+      <img src="assets/book-cover.jpg" alt="Winning Before the Wedding book cover" style="width:300px; display:block; box-shadow:24px 28px 60px rgba(15,39,71,0.35); transform:rotateY(-6deg) perspective(800px);">
+    </div>
+    <div>
+      <div style="font-size:12px; letter-spacing:0.34em; color:#6B1022; font-weight:600; margin-bottom:18px;">THE NEW BOOK</div>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:46px; font-weight:600; line-height:1.15; margin:0 0 22px;">Winning Before the Wedding</h2>
+      <p style="font-size:16px; line-height:1.8; color:#33425A; margin:0 0 18px;">Real relationship coaching that works. Drawing on 25+ years as a bishop, educator, and leadership developer, Cory gives singles and couples the practical, faith-centered preparation that prevents pain and positions them for purpose.</p>
+      <div style="display:flex; flex-direction:column; gap:12px; margin:0 0 32px;">
+        <sc-for list="{{ bookPoints }}" as="b" hint-placeholder-count="3">
+          <div style="display:flex; gap:14px; align-items:baseline;">
+            <span style="width:8px; height:8px; background:#C6A15B; transform:rotate(45deg); flex-shrink:0; position:relative; top:1px;"></span>
+            <span style="font-size:14.5px; line-height:1.6; color:#0F2747;">{{ b }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
+        <a href="https://www.amazon.com/dp/B0H2V19FH2" target="_blank" style="background:#0F2747; color:#F7F5F0; font-size:13px; letter-spacing:0.16em; font-weight:600; padding:17px 32px; display:inline-block;" style-hover="background:#1B3A63; color:#F7F5F0;">ORDER ON AMAZON</a>
+        <a href="assets/Cory J Chavis - Author One Sheet.pdf" target="_blank" download="Cory J Chavis - Author One Sheet.pdf" style="border:1px solid #0F2747; color:#0F2747; font-size:13px; letter-spacing:0.16em; font-weight:500; padding:16px 32px; display:inline-block;" style-hover="border-color:#C6A15B; color:#6B1022;">AUTHOR ONE SHEET (PDF)</a>
+        <span style="font-size:12.5px; color:#7D8794; letter-spacing:0.08em;">Bulk &amp; church curriculum orders: <a href="#contact" style="color:#6B1022; font-weight:600;">contact us</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" data-screen-label="About" style="background:#0F2747; color:#F7F5F0;">
+  <div style="max-width:1180px; margin:0 auto; padding:72px 32px;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;">
+      <div>
+        <div style="font-size:12px; letter-spacing:0.34em; color:#C6A15B; font-weight:600; margin-bottom:18px;">MEET THE WINOLOGIST&trade;</div>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-size:44px; font-weight:600; line-height:1.15; margin:0 0 22px; color:#F7F5F0;">Wisdom earned over 25 years of building people.</h2>
+        <p style="font-size:15.5px; line-height:1.85; color:rgba(247,245,240,0.85); margin:0 0 16px;">Bishop. School principal. Three-time author. MBA. Keynote speaker. Cory J. Chavis has spent his career developing leaders — in the classroom, in the pulpit, and in the community.</p>
+        <p style="font-size:15.5px; line-height:1.85; color:rgba(247,245,240,0.85); margin:0;">Now he brings that same depth to the area where people need it most: preparing for love that lasts. Not flashy. Not preachy. Just wise, practical coaching rooted in faith.</p>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(198,161,91,0.4); border:1px solid rgba(198,161,91,0.4);">
+        <sc-for list="{{ credentials }}" as="c" hint-placeholder-count="4">
+          <div style="background:#0F2747; padding:28px 24px;">
+            <div style="font-family:'Cormorant Garamond',serif; font-size:34px; color:#C6A15B; line-height:1;">{{ c.stat }}</div>
+            <div style="font-size:11.5px; letter-spacing:0.14em; color:rgba(247,245,240,0.8); margin-top:10px; line-height:1.5;">{{ c.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE BAND ============ -->
+<section data-screen-label="Quote" style="background:#F7F5F0; border-bottom:1px solid #E2DDD2;">
+  <div style="max-width:880px; margin:0 auto; padding:64px 32px; text-align:center;">
+    <div style="display:flex; align-items:center; gap:12px; justify-content:center; margin-bottom:28px;">
+      <span style="width:44px; height:1px; background:#C6A15B;"></span>
+      <span style="width:8px; height:8px; background:#C6A15B; transform:rotate(45deg);"></span>
+      <span style="width:44px; height:1px; background:#C6A15B;"></span>
+    </div>
+    <blockquote style="font-family:'Cormorant Garamond',serif; font-size:36px; line-height:1.45; margin:0; color:#0F2747;">&ldquo;Love requires more than chemistry. Marriage requires preparation. Preparation prevents pain and positions you for purpose.&rdquo;</blockquote>
+    <div style="font-size:12px; letter-spacing:0.3em; color:#6B1022; font-weight:600; margin-top:28px;">— CORY J. CHAVIS</div>
+  </div>
+</section>
+
+<!-- ============ SPEAKING ============ -->
+<section id="speaking" data-screen-label="Speaking" style="background:#F7F5F0;">
+  <div style="max-width:1180px; margin:0 auto; padding:72px 32px;">
+    <div style="text-align:center; max-width:640px; margin:0 auto 44px;">
+      <div style="font-size:12px; letter-spacing:0.34em; color:#6B1022; font-weight:600; margin-bottom:18px;">SPEAKING</div>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:46px; font-weight:600; line-height:1.15; margin:0 0 18px;">Three signature talks. One winning mindset.</h2>
+      <p style="font-size:15.5px; line-height:1.75; color:#33425A; margin:0;">For churches, conferences, schools, and organizations ready to move their people from frustration to first place.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:28px;">
+      <sc-for list="{{ talks }}" as="t" hint-placeholder-count="3">
+        <div style="background:#FFFFFF; border:1px solid #E2DDD2; border-top:3px solid #C6A15B; padding:36px 30px; display:flex; flex-direction:column; gap:16px;">
+          <div style="font-family:'Cormorant Garamond',serif; font-size:27px; font-weight:600; line-height:1.2; color:#0F2747;">{{ t.title }}</div>
+          <p style="font-size:13.5px; line-height:1.7; color:#33425A; margin:0; flex:1;">{{ t.desc }}</p>
+          <div style="border-top:1px solid #E2DDD2; padding-top:16px; display:flex; flex-direction:column; gap:6px;">
+            <span style="font-size:10.5px; letter-spacing:0.2em; color:#7D8794; font-weight:600;">IDEAL FOR</span>
+            <span style="font-size:12.5px; line-height:1.6; color:#0F2747;">{{ t.audience }}</span>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="text-align:center; margin-top:36px;">
+      <a href="#booking" style="background:#C6A15B; color:#0F2747; font-size:13px; letter-spacing:0.16em; font-weight:600; padding:17px 36px; display:inline-block;" style-hover="background:#D8B878; color:#0F2747;">CHECK AVAILABILITY</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOOKING FORM ============ -->
+<section id="booking" data-screen-label="Booking Form" style="background:#F7F5F0; border-top:1px solid #E2DDD2;">
+  <div style="max-width:880px; margin:0 auto; padding:72px 32px;">
+    <div style="text-align:center; max-width:620px; margin:0 auto 36px;">
+      <div style="font-size:12px; letter-spacing:0.34em; color:#6B1022; font-weight:600; margin-bottom:18px;">BOOK CORY TO SPEAK</div>
+      <h2 style="font-family:'Cormorant Garamond',serif; font-size:44px; font-weight:600; line-height:1.15; margin:0 0 16px; color:#0F2747;">Check Availability</h2>
+      <p style="font-size:15px; line-height:1.75; color:#33425A; margin:0;">Tell us about your event and the team will follow up within two business days.</p>
+    </div>
+    <sc-if value="{{ bookingSubmitted }}" hint-placeholder-val="{{ false }}">
+      <div style="border:1px solid #C6A15B; background:#FFFFFF; padding:40px; text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#0F2747; margin-bottom:10px;">Request received.</div>
+        <p style="font-size:14px; line-height:1.7; color:#33425A; margin:0;">Your email app has opened with the details — press send to complete the request, or write us directly at <a href="mailto:win@coryjchavis.com" style="color:#6B1022; font-weight:600;">win@coryjchavis.com</a>.</p>
+      </div>
+    </sc-if>
+    <sc-if value="{{ bookingNotSubmitted }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#FFFFFF; border:1px solid #E2DDD2; border-top:3px solid #C6A15B; padding:40px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px 24px;">
+          <label style="display:flex; flex-direction:column; gap:8px;">
+            <span style="font-size:11px; letter-spacing:0.22em; color:#0F2747; font-weight:600;">FULL NAME *</span>
+            <input type="text" value="{{ bkName }}" onChange="{{ onBkName }}" style="border:1px solid #D8D2C4; background:#FDFCFA; font-family:'Inter',sans-serif; font-size:14px; color:#0F2747; padding:13px 14px; outline:none;">
+          </label>
+          <label style="display:flex; flex-direction:column; gap:8px;">
+            <span style="font-size:11px; letter-spacing:0.22em; color:#0F2747; font-weight:600;">EMAIL *</span>
+            <input type="email" value="{{ bkEmail }}" onChange="{{ onBkEmail }}" style="border:1px solid #D8D2C4; background:#FDFCFA; font-family:'Inter',sans-serif; font-size:14px; color:#0F2747; padding:13px 14px; outline:none;">
+          </label>
+          <label style="display:flex; flex-direction:column; gap:8px;">
+            <span style="font-size:11px; letter-spacing:0.22em; color:#0F2747; font-weight:600;">ORGANIZATION / CHURCH</span>
+            <input type="text" value="{{ bkOrg }}" onChange="{{ onBkOrg }}" style="border:1px solid #D8D2C4; background:#FDFCFA; font-family:'Inter',sans-serif; font-size:14px; color:#0F2747; padding:13px 14px; outline:none;">
+          </label>
+          <label style="display:flex; flex-direction:column; gap:8px;">
+            <span style="font-size:11px; letter-spacing:0.22em; color:#0F2747; font-weight:600;">EVENT DATE</span>
+            <input type="date" value="{{ bkDate }}" onChange="{{ onBkDate }}" style="border:1px solid #D8D2C4; background:#FDFCFA; font-family:'Inter',sans-serif; font-size:14px; color:#0F2747; padding:12px 14px; outline:none;">
+          </label>
+          <label style="display:flex; flex-direction:column; gap:8px;">
+            <span style="font-size:11px; letter-spacing:0.22em; color:#0F2747; font-weight:600;">EVENT TYPE</span>
+            <select value="{{ bkType }}" onChange="{{ onBkType }}" style="border:1px solid #D8D2C4; background:#FDFCFA; font-family:'Inter',sans-serif; font-size:14px; color:#0F2747; padding:13px 12px; outline:none;">
+              <option>Church service or ministry event</option>
+              <option>Marriage / relationship conference</option>
+              <option>School or education event</option>
+              <option>Corporate or leadership event</option>
+              <option>Podcast or media appearance</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label style="display:flex; flex-direction:column; gap:8px;">
+            <span style="font-size:11px; letter-spacing:0.22em; color:#0F2747; font-weight:600;">REQUESTED TALK</span>
+            <select value="{{ bkTalk }}" onChange="{{ onBkTalk }}" style="border:1px solid #D8D2C4; background:#FDFCFA; font-family:'Inter',sans-serif; font-size:14px; color:#0F2747; padding:13px 12px; outline:none;">
+              <option>Winning Before the Wedding</option>
+              <option>Developing a Winning Mindset</option>
+              <option>From Frustration to First Place</option>
+              <option>Not sure yet — recommend one</option>
+            </select>
+          </label>
+          <label style="display:flex; flex-direction:column; gap:8px; grid-column:1 / -1;">
+            <span style="font-size:11px; letter-spacing:0.22em; color:#0F2747; font-weight:600;">EVENT LOCATION &amp; DETAILS</span>
+            <textarea rows="4" value="{{ bkDetails }}" onChange="{{ onBkDetails }}" style="border:1px solid #D8D2C4; background:#FDFCFA; font-family:'Inter',sans-serif; font-size:14px; color:#0F2747; padding:13px 14px; outline:none; resize:vertical;"></textarea>
+          </label>
+        </div>
+        <sc-if value="{{ bookingError }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:13px; color:#6B1022; margin-top:16px; font-weight:500;">Please add your name and a valid email so we can reply.</div>
+        </sc-if>
+        <button onClick="{{ onBookingSubmit }}" style="margin-top:28px; background:#0F2747; color:#F7F5F0; border:none; font-family:'Inter',sans-serif; font-size:13px; letter-spacing:0.16em; font-weight:600; padding:17px 40px; cursor:pointer;" style-hover="background:#1B3A63;">SEND BOOKING REQUEST</button>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<!-- ============ EMAIL CAPTURE ============ -->
+<section id="contact" data-screen-label="Email Capture" style="background:#0F2747; color:#F7F5F0; background-image:radial-gradient(circle at 50% 50%, rgba(198,161,91,0.1) 1px, transparent 1.5px); background-size:26px 26px;">
+  <div style="max-width:760px; margin:0 auto; padding:72px 32px; text-align:center;">
+    <div style="display:flex; justify-content:center; align-items:flex-start; font-family:'Cormorant Garamond',serif; line-height:1; margin:0 auto 26px;">
+      <span style="font-size:52px; font-weight:500; color:#F7F5F0;">C</span>
+      <span style="font-size:52px; font-weight:500; color:#C6A15B; margin:5px -5px 0;">J</span>
+      <span style="font-size:52px; font-weight:500; color:#F7F5F0;">C</span>
+    </div>
+    <h2 style="font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:600; line-height:1.2; margin:0 0 16px; color:#F7F5F0;">Join the Winner&rsquo;s Circle</h2>
+    <p style="font-size:15px; line-height:1.75; color:rgba(247,245,240,0.85); margin:0 0 36px;">Weekly relationship wisdom, launch updates, and first access to events. No noise — just what helps you win.</p>
+    <sc-if value="{{ subscribed }}" hint-placeholder-val="{{ false }}">
+      <div style="border:1px solid #C6A15B; padding:22px; font-family:'Cormorant Garamond',serif; font-size:22px; color:#C6A15B;">You&rsquo;re in the circle. Welcome!</div>
+    </sc-if>
+    <sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex; gap:0; max-width:520px; margin:0 auto;">
+        <input type="email" placeholder="Your email address" value="{{ email }}" onChange="{{ onEmailChange }}" style="flex:1; background:rgba(247,245,240,0.08); border:1px solid rgba(247,245,240,0.35); border-right:none; color:#F7F5F0; font-family:'Inter',sans-serif; font-size:14px; padding:16px 20px; outline:none;">
+        <button onClick="{{ onSubscribe }}" style="background:#C6A15B; color:#0F2747; border:none; font-family:'Inter',sans-serif; font-size:12.5px; letter-spacing:0.16em; font-weight:600; padding:16px 28px; cursor:pointer;" style-hover="background:#D8B878;">SUBSCRIBE</button>
+      </div>
+    </sc-if>
+    <div style="font-size:11.5px; color:#7D8794; margin-top:18px; letter-spacing:0.06em;">Speaking &amp; media inquiries: <a href="mailto:win@coryjchavis.com" style="color:#C6A15B;">win@coryjchavis.com</a> &middot; <a href="https://www.coryjchavis.com" style="color:#C6A15B;">www.coryjchavis.com</a></div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer data-screen-label="Footer" style="background:#0B1D36; color:#7D8794; border-top:1px solid rgba(198,161,91,0.3);">
+  <div style="max-width:1180px; margin:0 auto; padding:36px 32px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+    <span style="font-size:11px; letter-spacing:0.24em;">&copy; 2026 THE WINNER CIRCLE LLC &middot; CORY J. CHAVIS &middot; THE WINOLOGIST&trade;</span>
+    <span style="display:flex; gap:24px;">
+      <a href="#" style="font-size:11px; letter-spacing:0.2em; color:#7D8794;" style-hover="color:#C6A15B;">INSTAGRAM</a>
+      <a href="#" style="font-size:11px; letter-spacing:0.2em; color:#7D8794;" style-hover="color:#C6A15B;">FACEBOOK</a>
+      <a href="#" style="font-size:11px; letter-spacing:0.2em; color:#7D8794;" style-hover="color:#C6A15B;">LINKEDIN</a>
+      <a href="#" style="font-size:11px; letter-spacing:0.2em; color:#7D8794;" style-hover="color:#C6A15B;">TIKTOK</a>
+    </span>
+    <span style="font-size:11px; letter-spacing:0.24em;">HELPING COUPLES <span style="color:#C6A15B;">WIN</span> BEFORE MARRIAGE.&trade;</span>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroLayout&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Navy Statement&quot;,&quot;Editorial Ivory&quot;],&quot;default&quot;:&quot;Editorial Ivory&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+class Component extends DCLogic {
+  state = {
+    email: "", subscribed: false,
+    bkName: "", bkEmail: "", bkOrg: "", bkDate: "",
+    bkType: "Church service or ministry event",
+    bkTalk: "Winning Before the Wedding",
+    bkDetails: "", bookingSubmitted: false, bookingError: false
+  };
+
+  renderVals() {
+    const heroLayout = this.props.heroLayout ?? "Navy Statement";
+    return {
+      heroIsNavy: heroLayout === "Navy Statement",
+      heroIsEditorial: heroLayout === "Editorial Ivory",
+      navLinks: [
+        { label: "THE BOOK", href: "#book" },
+        { label: "ABOUT", href: "#about" },
+        { label: "SPEAKING", href: "#speaking" },
+        { label: "BOOK CORY", href: "#booking" },
+        { label: "CONTACT", href: "#contact" }
+      ],
+      bookPoints: [
+        "Practical preparation for singles, dating, and engaged couples",
+        "Faith-centered principles without preachiness or condemnation",
+        "A premarital framework churches can teach as curriculum"
+      ],
+      credentials: [
+        { stat: "25+", label: "YEARS DEVELOPING LEADERS" },
+        { stat: "3\u00D7", label: "PUBLISHED AUTHOR" },
+        { stat: "2", label: "PLATFORMS: FAITH + EDUCATION" },
+        { stat: "MBA", label: "PLUS M.A. TEACHING & ENGINEERING" }
+      ],
+      talks: [
+        { title: "Winning Before the Wedding", desc: "The signature talk. Why preparation — not chemistry — decides whether a marriage thrives, and the practical steps to get ready before \u201CI do.\u201D", audience: "Singles, engaged couples, churches, marriage conferences, premarital programs" },
+        { title: "Developing a Winning Mindset", desc: "The leadership keynote. How the habits of preparation, focus, and follow-through turn potential into first-place performance.", audience: "Corporations, schools, leadership summits, community organizations" },
+        { title: "From Frustration to First Place", desc: "For people stuck in cycles that keep them from what they want. A hope-filled roadmap from where you are to where you're called to be.", audience: "Churches, educators, conferences, men's & women's ministries" }
+      ],
+      email: this.state.email,
+      subscribed: this.state.subscribed,
+      notSubscribed: !this.state.subscribed,
+      onEmailChange: (e) => this.setState({ email: e.target.value }),
+      onSubscribe: () => { if (this.state.email.includes("@")) this.setState({ subscribed: true }); },
+      bkName: this.state.bkName,
+      bkEmail: this.state.bkEmail,
+      bkOrg: this.state.bkOrg,
+      bkDate: this.state.bkDate,
+      bkType: this.state.bkType,
+      bkTalk: this.state.bkTalk,
+      bkDetails: this.state.bkDetails,
+      bookingSubmitted: this.state.bookingSubmitted,
+      bookingNotSubmitted: !this.state.bookingSubmitted,
+      bookingError: this.state.bookingError,
+      onBkName: (e) => this.setState({ bkName: e.target.value }),
+      onBkEmail: (e) => this.setState({ bkEmail: e.target.value }),
+      onBkOrg: (e) => this.setState({ bkOrg: e.target.value }),
+      onBkDate: (e) => this.setState({ bkDate: e.target.value }),
+      onBkType: (e) => this.setState({ bkType: e.target.value }),
+      onBkTalk: (e) => this.setState({ bkTalk: e.target.value }),
+      onBkDetails: (e) => this.setState({ bkDetails: e.target.value }),
+      onBookingSubmit: () => {
+        const s = this.state;
+        if (!s.bkName.trim() || !s.bkEmail.includes("@")) { this.setState({ bookingError: true }); return; }
+        const body = [
+          "Booking / availability request",
+          "",
+          "Name: " + s.bkName,
+          "Email: " + s.bkEmail,
+          "Organization: " + (s.bkOrg || "-"),
+          "Event date: " + (s.bkDate || "-"),
+          "Event type: " + s.bkType,
+          "Requested talk: " + s.bkTalk,
+          "",
+          "Details:",
+          s.bkDetails || "-"
+        ].join("\n");
+        window.location.href = "mailto:win@coryjchavis.com?subject=" +
+          encodeURIComponent("Speaking request — " + s.bkName) +
+          "&body=" + encodeURIComponent(body);
+        this.setState({ bookingSubmitted: true, bookingError: false });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
