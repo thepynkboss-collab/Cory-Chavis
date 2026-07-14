@@ -12,5 +12,12 @@ Socials: IG · FB · LinkedIn · TikTok — Cory J Chavis
 Brand colors: Navy #0F2747 · Gold #C6A15B · Ivory #F7F5F0 · Burgundy #6B1022 · Slate #7D8794
 Fonts: Cormorant Garamond (display) + Inter (body), loaded from Google Fonts.
 
-Note: the booking form and email opt-in are front-end only — connect a form
-service (e.g. Formspree, Mailchimp) to actually collect submissions.
+## Forms
+
+The booking form and email opt-in submit to [FormSubmit](https://formsubmit.co)
+(free, no account) and deliver to **win@coryjchavis.com**.
+
+One-time activation: the first time either form is submitted after going live,
+FormSubmit emails win@coryjchavis.com an activation link. Click it once and all
+future submissions arrive automatically. To change the destination address,
+edit the two `fetch("https://formsubmit.co/ajax/...")` calls in `index.html`.

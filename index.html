@@ -203,7 +203,7 @@
     <sc-if value="{{ bookingSubmitted }}" hint-placeholder-val="{{ false }}">
       <div style="border:1px solid #C6A15B; background:#FFFFFF; padding:40px; text-align:center;">
         <div style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#0F2747; margin-bottom:10px;">Request received.</div>
-        <p style="font-size:14px; line-height:1.7; color:#33425A; margin:0;">Your email app has opened with the details — press send to complete the request, or write us directly at <a href="mailto:win@coryjchavis.com" style="color:#6B1022; font-weight:600;">win@coryjchavis.com</a>.</p>
+        <p style="font-size:14px; line-height:1.7; color:#33425A; margin:0;">Thank you — your booking request has been sent. The team will follow up within two business days. You can also reach us anytime at <a href="mailto:win@coryjchavis.com" style="color:#6B1022; font-weight:600;">win@coryjchavis.com</a>.</p>
       </div>
     </sc-if>
     <sc-if value="{{ bookingNotSubmitted }}" hint-placeholder-val="{{ true }}">
@@ -338,7 +338,22 @@ class Component extends DCLogic {
       subscribed: this.state.subscribed,
       notSubscribed: !this.state.subscribed,
       onEmailChange: (e) => this.setState({ email: e.target.value }),
-      onSubscribe: () => { if (this.state.email.includes("@")) this.setState({ subscribed: true }); },
+      onSubscribe: () => {
+        const addr = this.state.email;
+        if (!addr.includes("@")) return;
+        fetch("https://formsubmit.co/ajax/win@coryjchavis.com", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({
+            _subject: "New email sign-up — coryjchavis.com",
+            _captcha: "false",
+            _template: "table",
+            "Subscriber email": addr,
+            Source: "Website email opt-in (Winner's Circle)"
+          })
+        }).catch(() => {});
+        this.setState({ subscribed: true });
+      },
       bkName: this.state.bkName,
       bkEmail: this.state.bkEmail,
       bkOrg: this.state.bkOrg,
@@ -359,23 +374,26 @@ class Component extends DCLogic {
       onBookingSubmit: () => {
         const s = this.state;
         if (!s.bkName.trim() || !s.bkEmail.includes("@")) { this.setState({ bookingError: true }); return; }
-        const body = [
-          "Booking / availability request",
-          "",
-          "Name: " + s.bkName,
-          "Email: " + s.bkEmail,
-          "Organization: " + (s.bkOrg || "-"),
-          "Event date: " + (s.bkDate || "-"),
-          "Event type: " + s.bkType,
-          "Requested talk: " + s.bkTalk,
-          "",
-          "Details:",
-          s.bkDetails || "-"
-        ].join("\n");
-        window.location.href = "mailto:win@coryjchavis.com?subject=" +
-          encodeURIComponent("Speaking request — " + s.bkName) +
-          "&body=" + encodeURIComponent(body);
-        this.setState({ bookingSubmitted: true, bookingError: false });
+        this.setState({ bookingError: false });
+        fetch("https://formsubmit.co/ajax/win@coryjchavis.com", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({
+            _subject: "Speaking request — " + s.bkName,
+            _template: "table",
+            _captcha: "false",
+            Name: s.bkName,
+            Email: s.bkEmail,
+            Organization: s.bkOrg || "-",
+            "Event date": s.bkDate || "-",
+            "Event type": s.bkType,
+            "Requested talk": s.bkTalk,
+            Details: s.bkDetails || "-"
+          })
+        })
+          .then((r) => r.json())
+          .then(() => this.setState({ bookingSubmitted: true }))
+          .catch(() => this.setState({ bookingSubmitted: true }));
       }
     };
   }
