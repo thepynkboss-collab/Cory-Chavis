@@ -203,7 +203,7 @@
     <sc-if value="{{ bookingSubmitted }}" hint-placeholder-val="{{ false }}">
       <div style="border:1px solid #C6A15B; background:#FFFFFF; padding:40px; text-align:center;">
         <div style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#0F2747; margin-bottom:10px;">Request received.</div>
-        <p style="font-size:14px; line-height:1.7; color:#33425A; margin:0;">Thank you — your booking request has been sent. The team will follow up within two business days. You can also reach us anytime at <a href="mailto:win@coryjchavis.com" style="color:#6B1022; font-weight:600;">win@coryjchavis.com</a>.</p>
+        <p style="font-size:14px; line-height:1.7; color:#33425A; margin:0;">Thank you — your booking request has been sent. The team will follow up within two business days. You can also reach us anytime at <a href="mailto:info@coryjchavis.com" style="color:#6B1022; font-weight:600;">info@coryjchavis.com</a>.</p>
       </div>
     </sc-if>
     <sc-if value="{{ bookingNotSubmitted }}" hint-placeholder-val="{{ true }}">
@@ -278,7 +278,7 @@
         <button onClick="{{ onSubscribe }}" style="background:#C6A15B; color:#0F2747; border:none; font-family:'Inter',sans-serif; font-size:12.5px; letter-spacing:0.16em; font-weight:600; padding:16px 28px; cursor:pointer;" style-hover="background:#D8B878;">SUBSCRIBE</button>
       </div>
     </sc-if>
-    <div style="font-size:11.5px; color:#7D8794; margin-top:18px; letter-spacing:0.06em;">Speaking &amp; media inquiries: <a href="mailto:win@coryjchavis.com" style="color:#C6A15B;">win@coryjchavis.com</a> &middot; <a href="https://www.coryjchavis.com" style="color:#C6A15B;">www.coryjchavis.com</a></div>
+    <div style="font-size:11.5px; color:#7D8794; margin-top:18px; letter-spacing:0.06em;">Speaking &amp; media inquiries: <a href="mailto:info@coryjchavis.com" style="color:#C6A15B;">info@coryjchavis.com</a> &middot; <a href="https://www.coryjchavis.com" style="color:#C6A15B;">www.coryjchavis.com</a></div>
   </div>
 </section>
 
@@ -341,7 +341,7 @@ class Component extends DCLogic {
       onSubscribe: () => {
         const addr = this.state.email;
         if (!addr.includes("@")) return;
-        fetch("https://formsubmit.co/ajax/win@coryjchavis.com", {
+        fetch("https://formsubmit.co/ajax/info@coryjchavis.com", {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "application/json" },
           body: JSON.stringify({
@@ -375,7 +375,7 @@ class Component extends DCLogic {
         const s = this.state;
         if (!s.bkName.trim() || !s.bkEmail.includes("@")) { this.setState({ bookingError: true }); return; }
         this.setState({ bookingError: false });
-        fetch("https://formsubmit.co/ajax/win@coryjchavis.com", {
+        fetch("https://formsubmit.co/ajax/info@coryjchavis.com", {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "application/json" },
           body: JSON.stringify({
